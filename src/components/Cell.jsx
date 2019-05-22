@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const Cell = () => {
-  const [active, setActive] = useState(false);
+const Cell = ({ isActive }) => {
+  const [active, setActive] = useState(isActive);
   let className = "cell";
   if (active) {
     className += " cell-active";

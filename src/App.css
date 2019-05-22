@@ -5,7 +5,8 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .grid {
@@ -22,4 +23,8 @@ body {
 
 .cell-active {
   background-color: green;
+}
+
+.menu {
+  display: flex;
 }
