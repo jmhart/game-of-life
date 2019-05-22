@@ -1,11 +1,8 @@
 import React from "react";
 
-const StartButton = () => {
+const StartButton = ({ onClick }) => {
   return (
-    <button
-      onClick={() => console.log("Start clicked")}
-      className="menu-btn-start"
-    >
+    <button onClick={onClick} className="menu-btn-start">
       Start
     </button>
   );

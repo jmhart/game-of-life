@@ -1,10 +1,10 @@
 import React from "react";
 import StartButton from "./StartButton";
 
-const Menu = () => {
+const Menu = ({ handleStart }) => {
   return (
     <div className="menu">
-      <StartButton />
+      <StartButton onClick={handleStart} />
     </div>
   );
 };
