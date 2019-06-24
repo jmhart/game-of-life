@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Grid from "./Grid";
-import Menu from "./Menu";
+import React, { Component } from 'react';
+import Grid from './Grid';
+import Menu from './Menu';
 
 class GameOfLife extends Component {
   state = {
@@ -16,7 +16,7 @@ class GameOfLife extends Component {
   }
 
   handleStart = () => {
-    console.log("Start");
+    console.log('Start');
   };
 
   render() {

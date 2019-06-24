@@ -1,7 +1,7 @@
-import Game from "./game";
+import Game from './game';
 
-describe("populated cell", () => {
-  it("should die with one neighbor", () => {
+describe('populated cell', () => {
+  it('should die with one neighbor', () => {
     const cells = [[1, 0, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -9,7 +9,7 @@ describe("populated cell", () => {
     expect(result).toBe(false);
   });
 
-  it("should die with no neighbors", () => {
+  it('should die with no neighbors', () => {
     const cells = [[0, 0, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -17,7 +17,7 @@ describe("populated cell", () => {
     expect(result).toBe(false);
   });
 
-  it("should die with four neighbors", () => {
+  it('should die with four neighbors', () => {
     const cells = [[0, 1, 1], [1, 1, 0], [1, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -25,7 +25,7 @@ describe("populated cell", () => {
     expect(result).toBe(false);
   });
 
-  it("should die with more than four neighbors", () => {
+  it('should die with more than four neighbors', () => {
     const cells = [[1, 1, 1], [1, 1, 0], [1, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -33,7 +33,7 @@ describe("populated cell", () => {
     expect(result).toBe(false);
   });
 
-  it("should survive with two neighbors", () => {
+  it('should survive with two neighbors', () => {
     const cells = [[1, 1, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -41,7 +41,7 @@ describe("populated cell", () => {
     expect(result).toBe(true);
   });
 
-  it("should survive with three neighbors", () => {
+  it('should survive with three neighbors', () => {
     const cells = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -50,8 +50,8 @@ describe("populated cell", () => {
   });
 });
 
-describe("empty cell", () => {
-  it("should populate with three neighbors", () => {
+describe('empty cell', () => {
+  it('should populate with three neighbors', () => {
     const cells = [[1, 1, 1], [0, 0, 0], [0, 0, 0]];
     const game = new Game(cells);
     const result = game.evaluateCell(1, 1);
@@ -60,8 +60,8 @@ describe("empty cell", () => {
   });
 });
 
-describe("cycle", () => {
-  it("test", () => {
+describe('cycle', () => {
+  it('test', () => {
     const cells = [[1, 1, 1], [0, 0, 0], [0, 0, 0]];
     const game = new Game(cells);
     game.cycle();
