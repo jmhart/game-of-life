@@ -1,10 +1,10 @@
-import Game from './game';
+import Game from './gameService';
 
 describe('populated cell', () => {
   it('should die with one neighbor', () => {
     const cells = [[1, 0, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(false);
   });
@@ -12,7 +12,7 @@ describe('populated cell', () => {
   it('should die with no neighbors', () => {
     const cells = [[0, 0, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(false);
   });
@@ -20,7 +20,7 @@ describe('populated cell', () => {
   it('should die with four neighbors', () => {
     const cells = [[0, 1, 1], [1, 1, 0], [1, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(false);
   });
@@ -28,7 +28,7 @@ describe('populated cell', () => {
   it('should die with more than four neighbors', () => {
     const cells = [[1, 1, 1], [1, 1, 0], [1, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(false);
   });
@@ -36,7 +36,7 @@ describe('populated cell', () => {
   it('should survive with two neighbors', () => {
     const cells = [[1, 1, 0], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(true);
   });
@@ -44,7 +44,7 @@ describe('populated cell', () => {
   it('should survive with three neighbors', () => {
     const cells = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(true);
   });
@@ -54,17 +54,17 @@ describe('empty cell', () => {
   it('should populate with three neighbors', () => {
     const cells = [[1, 1, 1], [0, 0, 0], [0, 0, 0]];
     const game = new Game(cells);
-    const result = game.evaluateCell(1, 1);
+    const result = game.evalCell(1, 1);
 
     expect(result).toBe(true);
   });
 });
 
-describe('cycle', () => {
+describe('next', () => {
   it('test', () => {
     const cells = [[1, 1, 1], [0, 0, 0], [0, 0, 0]];
     const game = new Game(cells);
-    game.cycle();
+    game.next();
   });
 });
 

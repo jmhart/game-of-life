@@ -3,18 +3,18 @@ class Game {
     this.cells = cells;
   }
 
-  cycle() {
+  next(cells) {
     const newCells = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
     for (let i = 0; i < this.cells.length; i++) {
       for (let j = 0; j < this.cells.length; j++) {
-        newCells[i][j] = this.evaluateCell(i, j);
+        newCells[i][j] = this.evalCell(i, j);
       }
     }
     console.log(newCells);
   }
 
-  evaluateCell(x, y) {
+  evalCell(x, y) {
     const neighbors = this.getNeighbors(x, y);
     const activeNeighbors = neighbors.filter(neighbor => neighbor);
 
