@@ -1,32 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Grid from './Grid';
 import Menu from './Menu';
 
-class GameOfLife extends Component {
-  state = {
-    cells: []
-  };
-
-  componentDidMount() {
-    let cells = [];
+export default function GameOfLife() {
+  function init() {
+    const c = [];
     for (let i = 0; i < 900; i++) {
-      cells.push({ id: i, isActive: false });
+      c.push({ id: i, isActive: false });
     }
-    this.setState({ cells });
+    return c;
   }
 
-  handleStart = () => {
-    console.log('Start');
-  };
+  const [cells, setCells] = useState(init());
 
-  render() {
-    return (
+  function handleStart() {
+    setInterval(() => {
+      console.log('Tick...');
+    }, 1000);
+  }
+
+  function next() {}
+
+  function handleChangeCell(cell) {
+    const index = cells.findIndex(c => c.id === cell.id);
+    const newCells = [...cells];
+    newCells[index] = cell;
+    setCells(newCells);
+  }
+
+  return (
+    <div>
       <React.Fragment>
-        <Grid cells={this.state.cells} />
-        <Menu handleStart={this.handleStart} />
+        <Grid cells={cells} handleChangeCell={handleChangeCell} />
+        <Menu handleStart={handleStart} />
       </React.Fragment>
-    );
-  }
+    </div>
+  );
 }
-
-export default GameOfLife;

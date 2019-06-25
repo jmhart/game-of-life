@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
-const Cell = ({ isActive }) => {
-  const [active, setActive] = useState(isActive);
+const Cell = ({ id, isActive, handleChangeCell }) => {
   let className = 'cell';
-  if (active) {
+  if (isActive) {
     className += ' cell-active';
   }
-  return <div onClick={() => setActive(!active)} className={className} />;
+
+  return (
+    <div
+      onClick={() => handleChangeCell({ id, isActive: !isActive })}
+      className={className}
+    />
+  );
 };
 
 export default Cell;
