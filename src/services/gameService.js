@@ -1,17 +1,19 @@
-class Game {
+export default class GameService {
   constructor(cells) {
     this.cells = cells;
   }
 
-  next(cells) {
-    const newCells = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  next() {
+    let newCells = [...Array(this.cells.length)].map(e =>
+      Array(this.cells.length).fill(0)
+    );
 
     for (let i = 0; i < this.cells.length; i++) {
       for (let j = 0; j < this.cells.length; j++) {
         newCells[i][j] = this.evalCell(i, j);
       }
     }
-    console.log(newCells);
+    return newCells;
   }
 
   evalCell(x, y) {
@@ -19,14 +21,15 @@ class Game {
     const activeNeighbors = neighbors.filter(neighbor => neighbor);
 
     if (this.cells[x][y]) {
-      if (activeNeighbors.length === 1) return false;
-      else if (activeNeighbors.length === 0) return false;
-      else if (activeNeighbors.length >= 4) return false;
-      else if (activeNeighbors.length === 2) return true;
-      else if (activeNeighbors.length === 3) return true;
+      if (activeNeighbors.length === 1) return 0;
+      else if (activeNeighbors.length === 0) return 0;
+      else if (activeNeighbors.length >= 4) return 0;
+      else if (activeNeighbors.length === 2) return 1;
+      else if (activeNeighbors.length === 3) return 1;
     } else {
-      if (activeNeighbors.length === 3) return true;
+      if (activeNeighbors.length === 3) return 1;
     }
+    return 0;
   }
 
   getNeighbors(x, y) {
@@ -45,5 +48,3 @@ class Game {
     return neighbors;
   }
 }
-
-export default Game;
