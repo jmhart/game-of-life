@@ -18,11 +18,12 @@ body {
 .cell {
   width: 10px;
   height: 10px;
-  border: 1px solid red;
+  border: 1px solid #05386b;
+  background: #edf5e1;
 }
 
 .cell-active {
-  background-color: green;
+  background-color: #379683;
 }
 
 .menu {
