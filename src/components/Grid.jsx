@@ -4,14 +4,16 @@ import Cell from './Cell';
 const Grid = ({ cells, handleChangeCell }) => {
   return (
     <div className="grid">
-      {cells.map(c => (
-        <Cell
-          key={c.id}
-          id={c.id}
-          isActive={c.isActive}
-          handleChangeCell={handleChangeCell}
-        />
-      ))}
+      {cells.map((row, rowIndex) =>
+        row.map((c, columnIndex) => (
+          <Cell
+            key={rowIndex * row.length + columnIndex}
+            pos={{ rowIndex, columnIndex }}
+            isActive={c}
+            handleChangeCell={handleChangeCell}
+          />
+        ))
+      )}
     </div>
   );
 };

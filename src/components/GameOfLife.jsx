@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
 import Grid from './Grid';
 import Menu from './Menu';
+import _ from 'lodash';
+import GameService from '../services/GameService';
 
 export default function GameOfLife() {
   function init() {
-    const c = [];
-    for (let i = 0; i < 900; i++) {
-      c.push({ id: i, isActive: false });
-    }
-    return c;
+    return Array.from(Array(30), () => new Array(30).fill(false));
   }
 
   const [cells, setCells] = useState(init());
 
   function handleStart() {
-    setInterval(() => {
-      console.log('Tick...');
-    }, 1000);
+    next();
   }
 
-  function next() {}
+  function next() {
+    const game = new GameService(cells);
+    const nextCells = game.next();
+
+    setCells(nextCells);
+  }
 
   function handleChangeCell(cell) {
-    const index = cells.findIndex(c => c.id === cell.id);
-    const newCells = [...cells];
-    newCells[index] = cell;
+    const newCells = _.cloneDeep(cells);
+    const { rowIndex, columnIndex } = cell.pos;
+    newCells[rowIndex][columnIndex] = cell.isActive;
+
     setCells(newCells);
   }
 
