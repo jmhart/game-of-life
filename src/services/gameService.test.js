@@ -76,7 +76,11 @@ describe('get neighbors', () => {
 
 describe('populated cell', () => {
   it('should die with one neighbor', () => {
-    const cells = [[1, 0, 0], [0, 1, 0], [0, 0, 0]];
+    const cells = [
+      [true, false, false],
+      [false, true, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -84,7 +88,11 @@ describe('populated cell', () => {
   });
 
   it('should die with no neighbors', () => {
-    const cells = [[0, 0, 0], [0, 1, 0], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [false, true, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -92,7 +100,11 @@ describe('populated cell', () => {
   });
 
   it('should die with four neighbors', () => {
-    const cells = [[0, 1, 1], [1, 1, 0], [1, 0, 0]];
+    const cells = [
+      [false, true, true],
+      [true, true, false],
+      [true, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -100,7 +112,11 @@ describe('populated cell', () => {
   });
 
   it('should die with more than four neighbors', () => {
-    const cells = [[1, 1, 1], [1, 1, 0], [1, 0, 0]];
+    const cells = [
+      [true, true, true],
+      [true, true, false],
+      [true, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -108,7 +124,11 @@ describe('populated cell', () => {
   });
 
   it('should survive with two neighbors', () => {
-    const cells = [[1, 1, 0], [0, 1, 0], [0, 0, 0]];
+    const cells = [
+      [true, true, false],
+      [false, true, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -116,7 +136,11 @@ describe('populated cell', () => {
   });
 
   it('should survive with three neighbors', () => {
-    const cells = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
+    const cells = [
+      [true, true, true],
+      [false, true, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -126,7 +150,11 @@ describe('populated cell', () => {
 
 describe('empty cell', () => {
   it('should populate with three neighbors', () => {
-    const cells = [[1, 1, 1], [0, 0, 0], [0, 0, 0]];
+    const cells = [
+      [true, true, true],
+      [false, false, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(1, 1);
 
@@ -134,7 +162,11 @@ describe('empty cell', () => {
   });
 
   it('should not populate with two neighbors if cell is top right corner', () => {
-    const cells = [[0, 0, 0], [1, 1, 1], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [true, true, true],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.evalCell(0, 2);
 
@@ -144,44 +176,92 @@ describe('empty cell', () => {
 
 describe('next', () => {
   it('should return all zeros if there are no populated cells', () => {
-    const cells = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [false, false, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+    expect(result).toEqual([
+      [false, false, false],
+      [false, false, false],
+      [false, false, false]
+    ]);
   });
 
   it('should return all zeros if there is one populated cell', () => {
-    const cells = [[0, 0, 0], [0, 1, 0], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [false, true, false],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+    expect(result).toEqual([
+      [false, false, false],
+      [false, false, false],
+      [false, false, false]
+    ]);
   });
 
   it('should return all zeros if there is two adjacent populated cell', () => {
-    const cells = [[0, 0, 0], [0, 1, 1], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [false, true, true],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+    expect(result).toEqual([
+      [false, false, false],
+      [false, false, false],
+      [false, false, false]
+    ]);
   });
 
   it('should return a tub if cells are a tub', () => {
-    const cells = [[0, 1, 0], [1, 0, 1], [0, 1, 0]];
+    const cells = [
+      [false, true, false],
+      [true, false, true],
+      [false, true, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 1, 0], [1, 0, 1], [0, 1, 0]]);
+    expect(result).toEqual([
+      [false, true, false],
+      [true, false, true],
+      [false, true, false]
+    ]);
   });
 
   it('should return a block if cells are a block', () => {
-    const cells = [[0, 0, 0], [1, 1, 0], [1, 1, 0]];
+    const cells = [
+      [false, false, false],
+      [true, true, false],
+      [true, true, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 0, 0], [1, 1, 0], [1, 1, 0]]);
+    expect(result).toEqual([
+      [false, false, false],
+      [true, true, false],
+      [true, true, false]
+    ]);
   });
 
   it('should return three vertical cells if there is three horizontal cells', () => {
-    const cells = [[0, 0, 0], [1, 1, 1], [0, 0, 0]];
+    const cells = [
+      [false, false, false],
+      [true, true, true],
+      [false, false, false]
+    ];
     const game = new GameService(cells);
     const result = game.next();
-    expect(result).toEqual([[0, 1, 0], [0, 1, 0], [0, 1, 0]]);
+    expect(result).toEqual([
+      [false, true, false],
+      [false, true, false],
+      [false, true, false]
+    ]);
   });
 });
