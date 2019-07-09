@@ -1,10 +1,10 @@
 import React from 'react';
-import StartButton from './StartButton';
+import ToggleStartButton from './ToggleStartButton';
 
-const Menu = ({ handleStart }) => {
+const Menu = ({ isActive, toggleStart }) => {
   return (
     <div className="menu">
-      <StartButton onClick={handleStart} />
+      <ToggleStartButton isActive={isActive} onClick={toggleStart} />
     </div>
   );
 };

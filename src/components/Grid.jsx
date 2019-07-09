@@ -1,7 +1,7 @@
 import React from 'react';
 import Cell from './Cell';
 
-const Grid = ({ cells, handleChangeCell }) => {
+const Grid = ({ cells, toggleCell }) => {
   return (
     <div className="grid">
       {cells.map((row, rowIndex) =>
@@ -10,7 +10,7 @@ const Grid = ({ cells, handleChangeCell }) => {
             key={rowIndex * row.length + columnIndex}
             pos={{ rowIndex, columnIndex }}
             isActive={c}
-            handleChangeCell={handleChangeCell}
+            toggleCell={toggleCell}
           />
         ))
       )}

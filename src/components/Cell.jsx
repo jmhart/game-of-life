@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cell = ({ pos, isActive, handleChangeCell }) => {
+const Cell = ({ pos, isActive, toggleCell }) => {
   let className = 'cell';
   if (isActive) {
     className += ' cell-active';
@@ -8,7 +8,7 @@ const Cell = ({ pos, isActive, handleChangeCell }) => {
 
   return (
     <div
-      onClick={() => handleChangeCell({ pos, isActive: !isActive })}
+      onClick={() => toggleCell({ pos, isActive: !isActive })}
       className={className}
     />
   );
