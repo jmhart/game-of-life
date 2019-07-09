@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 
 export default class GameService {
   constructor(cells) {
@@ -6,7 +6,7 @@ export default class GameService {
   }
 
   next() {
-    const newCells = _.cloneDeep(this.cells);
+    const newCells = cloneDeep(this.cells);
 
     for (let i = 0; i < this.cells.length; i++) {
       for (let j = 0; j < this.cells.length; j++) {
